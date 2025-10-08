@@ -46,6 +46,6 @@ Step 6: Combine everything into the final presentation and submission materials 
 
 Some countries or years may have missing data, which can limit the sample size. The two datasets might not perfectly overlap in time or coverage. Measurement differences between data sources could affect consistency. The project will focus on relationships and predictive patterns but will not make causal claims.
 
-Gaps
+**Gaps**
 
 We still need to check which years overlap between the datasets and whether all key indicators are available for the same countries. Some additional context from outside data sources, like economic or education statistics, might improve model accuracy. We also need to decide whether to focus on a few specific disorders or analyze all of them together.
