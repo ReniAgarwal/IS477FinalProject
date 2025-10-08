@@ -31,10 +31,15 @@ Both will collaborate on reviewing the code, writing conclusions, and preparing 
 Timeline
 
 Step 1: Explore both datasets, review data dictionaries, and outline the cleaning and integration plan.
+
 Step 2: Clean and prepare the datasets, handle missing data, and align years. Dhruval will take the lead on this while Reni documents the process.
+
 Step 3: Merge the datasets and verify that countries and years align correctly. Dhruval will handle the technical merge, and Reni will begin exploring relationships through visualizations.
+
 Step 4: Develop and test models to identify relationships and possible predictors. Dhruval will focus on the model-building, while Reni evaluates results and refines visuals.
+
 Step 5: Interpret findings, summarize insights, and prepare the final report. Reni will write the analysis section, and Dhruval will finalize outputs and code for the repository.
+
 Step 6: Combine everything into the final presentation and submission materials together.
 
 Constraints
