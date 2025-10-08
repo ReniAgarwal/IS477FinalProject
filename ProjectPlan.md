@@ -20,9 +20,7 @@ World Happiness Index Report – This dataset includes information about countri
 
 We will connect the two datasets using country and year as the linking variables. This will allow us to study relationships and trends over time. Both datasets include enough data to run correlations, visual analyses, and basic predictive models.
 
-Team
-
-The project will be completed by Dhruval Patel and Reni.
+Team: Dhruval and Reni
 
 Dhruval will focus on cleaning and integrating the datasets, preparing the merged data, and developing the predictive models.
 
