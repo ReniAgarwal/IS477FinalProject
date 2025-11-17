@@ -1,20 +1,10 @@
-**Task Update**
-
-In the Project Plan the team outlined six steps for looking through the world happiness index and the mental health datasets, those being: 
-
-Step 1: Explore both datasets, review data dictionaries, and outline the cleaning and integration plan.
-
-Step 2: Clean and prepare the datasets, handle missing data, and align years.
-
-Step 3: Merge the datasets and verify that countries and years align correctly.
-
-Step 4: Develop and test models to identify relationships and possible predictors.
-
-Step 5: Interpret findings, summarize insights, and prepare the final report. 
-
-Step 6: Combine everything into the final presentation and submission materials.
-
-Of these steps, the first three have been completed, with the data having been aligned and merged into one dataset, with the Project-Check notebook in the repository being the code to merge the datasets, as well as being code to create visualizations with the merged dataset to further explore the data and understand relationships between variables. These visualizations are the World Happiness Graphs and MentalHealthVHappinessScore2017 file and they give us an understanding of how different countries scored on the Happiness Index throughout the mid-2010s and how different rates of mental illness in a country may factor into the Happiness Score of the country. Going forward, we will use this understanding and the merged dataset to develop the model.
-
-**Timeline Update**
-
+### Task Update
+#### Overview of the Plan 
+In our original project plan we laid out six main steps for studying the relationship between the world happiness data and the mental health data. We planned to explore both datasets, clean and align them, merge them by country and year, build models to look for predictors, interpret the results, and then turn everything into a final report and presentation.
+#### Data Cleaning and Integration
+So far we have completed the first three steps and started some early exploratory analysis. In the Project-Check notebook in our repository, we load the mental health disorder data and filter it so we keep only the prevalence percentages for conditions like depression, anxiety, drug use disorders, and alcohol use disorders. We then standardize country names and years so they can match the World Happiness data. For the World Happiness dataset, we combine the separate files for 2015 through 2019, rename the key columns to a consistent set of features such as happiness score, GDP per capita, social support, healthy life expectancy, freedom, generosity, and perceptions of corruption, and again align country names and years.
+After cleaning both sources, we merge them into a single dataset based on country and year. The merged table currently has a little over four hundred rows and includes both the happiness indicators and the mental health prevalence percentages. This merged dataset is now the main artifact we will use for the rest of the project and it is saved and created through the Project-Check notebook.
+#### Current Visualizations and Findings  
+We have also begun using the merged data for visual exploration. In the same notebook we generate world maps of happiness scores for 2015, 2016, and 2017, which are saved in the repository as image files such as WorldHappiness2015.png, WorldHappiness2016.png, and WorldHappiness2017.png. These maps give us a quick sense of which regions tend to report higher or lower happiness scores. In addition, we created a scatter plot for 2017 that compares the happiness score of each country with the percentages of people experiencing anxiety, drug use disorders, and depression, saved as MentalHealthVHappinessScore2017.png. This figure starts to show how mental health outcomes may relate to reported happiness across countries.
+#### Next Steps 
+Going forward, we will use this merged dataset and the insights from these first visualizations to move into step four of our plan. Our next focus will be building and testing simple predictive models that use happiness indicators to predict the prevalence of depression or anxiety, and then refining our visualizations and narrative for the final report and presentation.
