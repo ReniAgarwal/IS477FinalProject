@@ -1,42 +1,87 @@
 
 **Summary:**
 
-This project explores how national mental health outcomes relate to country level happiness scores. People often assume that happier countries must have better mental health, but it is not obvious how strong that relationship is or whether it is consistent across different disorders. Our main goal is to integrate two widely used public datasets into a single, reusable table and use it to examine basic patterns between mental health prevalence and happiness.
-We focus on three questions. First, how are country level prevalence rates of common mental and substance use disorders associated with national happiness scores from the World Happiness Report. Second, do these associations look similar for different disorders such as depression, anxiety, alcohol use, and schizophrenia. Third, how stable are these relationships across the years where both sources provide overlapping data.
-To answer these questions we combined an Our World in Data mental health prevalence table with the World Happiness Report data from 2015 to 2019. The mental health dataset reports the percentage of the population with several disorders by country and year. The happiness dataset provides country level happiness scores and related factors such as GDP per capita, social support, healthy life expectancy, freedom, generosity, and perceptions of corruption. We cleaned both sources, standardized country names, and merged them on a shared cleaned country key and year.
-After integration we generated descriptive statistics and visualizations. These include scatter plots of depression prevalence versus happiness scores for different years, plots for other disorders, and summaries that show how happiness and mental health vary across countries. The figures help us see broad trends without committing to a complex model.
-In general we see a weak negative relationship between reported depression or anxiety prevalence and happiness scores: countries with higher reported prevalence tend to have somewhat lower happiness scores, but there is a lot of variation and many exceptions. Some countries with high happiness scores still show notable prevalence of certain disorders, while some lower ranked countries show moderate or low reported prevalence.
-Our results suggest that simple public data can be combined to support cross national exploration of mental health and happiness, but they also highlight the limits of this approach. Differences in diagnosis, reporting practices, and health systems likely influence the observed prevalence as much as the true burden of illness. The integrated dataset and workflow in this repository provide a starting point for students or researchers who want to build more advanced models or extend the analysis with additional sources, while also serving as a concrete example of a small but reproducible data curation project.
+This project explores how national mental health outcomes relate to country level happiness scores. People often assume that happier countries must have better mental health, but it is not obvious how strong that relationship is or whether it is consistent across different disorders. Our main goal is to take two widely used public datasets, clean and integrate them into a single reusable table, and then use that table to examine simple but meaningful patterns between mental health prevalence and happiness. By focusing on a small number of clear questions and documenting each data curation step, we aim to create a project that is not only interesting but also easy for others to reproduce, extend, or critique.
+
+We focus on three guiding questions. First, how are country level prevalence rates of common mental and substance use disorders associated with national happiness scores from the World Happiness Report. Second, do these associations look similar across different disorders such as depression, anxiety, alcohol use, drug use, eating disorders, bipolar disorder, and schizophrenia, or do some conditions appear more strongly related to happiness than others. Third, how stable are these relationships across the years where both sources provide overlapping data, specifically 2015 through 2019. Together these questions let us explore whether the simple story that “happier countries have better mental health” holds up when we look more closely at the numbers.
+
+To answer these questions we combined an Our World in Data mental health prevalence table with World Happiness Report data from 2015 to 2019. The mental health dataset reports the percentage of the population with several disorders by country and year. The happiness dataset provides country level happiness scores and related factors such as gross domestic product per capita, social support, healthy life expectancy, freedom, generosity, and perceived corruption. We cleaned both sources by trimming whitespace, converting percentage columns to numeric types, and filtering impossible values. We then standardized country names using a set of explicit replacements so that both tables shared a common cleaned country key. Finally, we merged the datasets on this key and on year to create a long merged table that can be reused for other analyses.
+
+After integration we generated descriptive statistics and several visualizations. These include scatter plots of depression prevalence versus happiness scores for different years, similar plots for other disorders, and basic summaries that show how happiness and mental health prevalence vary across countries and over time. We also examined distributions and simple correlations to get a sense of the overall patterns without committing to a complex statistical model. The figures help us visually inspect whether higher happiness scores tend to coincide with lower reported prevalence and whether any clear clusters or outliers emerge.
+
+In general we see a weak negative relationship between reported depression or anxiety prevalence and happiness scores. Countries with higher reported prevalence tend to have somewhat lower happiness scores, but there is a lot of variation and many exceptions. Some countries with high happiness scores still show notable prevalence of certain disorders, while some lower ranked countries show moderate or low reported prevalence. The patterns also differ by disorder and are not perfectly stable from year to year, which suggests that measurement and context matter as much as any simple link between happiness and mental health.
+
+Overall, our results show that simple public data can be combined to support cross national exploration of mental health and happiness, but they also highlight the limits of this approach. Differences in diagnosis standards, reporting practices, and health system capacity likely influence observed prevalence as much as the true burden of illness. Despite these limitations, the integrated dataset and documented workflow in this repository provide a starting point for students or researchers who want to build more advanced models, add new years or variables, or focus on specific regions. At the same time, the project serves as a concrete example of a small but fully reproducible data curation and analysis pipeline.
 
 **Data profile:**
 
-Mental health prevalence (Our World in Data)
-The first dataset comes from Our World in Data and reports prevalence estimates for several mental and substance use disorders by country and year. The original CSV includes many variables, but we focus on a subset that can be interpreted as percentages of the population. Key columns are:
-• Entity, Code, Year – country name, country code when available, and calendar year
- • Schizophrenia (%)
- • Bipolar disorder (%)
- • Eating disorders (%)
- • Anxiety disorders (%)
- • Drug use disorders (%)
- • Depression (%)
- • Alcohol use disorders (%)
-In our cleaned table, which we call mental, we keep rows where all of the selected disorder columns can be interpreted as valid percentages. We convert the disorder columns to numeric types, rename them to shorter consistent names such as schizophrenia_pct, depression_pct, and alcohol_use_pct, and convert Year into an integer year column. Rows with missing country or year are dropped, since those fields are part of the key we use to merge with the happiness data. The result is a country year panel where each row contains prevalence information for multiple disorders and can be joined cleanly with the World Happiness data.
-World Happiness Report 2015–2019
-The second dataset is the World Happiness Report data for years 2015 through 2019. Each year is stored in a separate CSV file and the column names change slightly from one year to the next. We read each file, trim whitespace from column names, infer the year from the filename, and map columns into a common schema. The cleaned happiness table contains:
-• country
- • year
- • happiness_score
- • gdp_per_capita
- • social_support
- • healthy_life_expectancy
- • freedom
- • generosity
- • perceptions_of_corruption
-Because column names such as “Happiness Score,” “Happiness.Score,” or just “Score” all refer to the same concept, we use a small mapping based on lowercased column names and keywords to assign them to the standard fields. After mapping, we keep only the target columns, drop rows with missing country or year, and cast year to an integer. The yearly tables are concatenated into a single happiness table that covers 2015 through 2019.
-Ethical and legal considerations
-Both datasets are aggregate country level sources with no individual level identifiers. This greatly reduces privacy risks. Our World in Data generally publishes material under Creative Commons style licenses, and the World Happiness Report data are explicitly intended for research and education. In this project we use the data only for coursework, give credit to the original providers in the references, and do not attempt to link them with any sensitive individual records.
-We store a subset of the cleaned CSV files and output tables in a Box folder to support reproducibility without pushing large data files directly to GitHub. The README explains where to place these files inside the project structure after downloading them. The Box folder is shared with view access for the course staff only. Our design respects the terms of use of the data while still making the curated version reproducible for grading and future work.
+**Mental health prevalence**
 
+The first dataset comes from Our World in Data and reports prevalence estimates for several mental and substance use disorders by country and year. The original CSV contains many columns (including DALYs, YLDs, and region codes), but for this project we focus on the columns that can be interpreted directly as percentages of the population. The key raw columns are
+
+Entity, Code, Year – country name, country code when available, and calendar year
+
+Schizophrenia (%)
+
+Bipolar disorder (%)
+
+Eating disorders (%)
+
+Anxiety disorders (%)
+
+Drug use disorders (%)
+
+Depression (%)
+
+Alcohol use disorders (%)
+
+In our cleaned table, which we call mental, we:
+
+Convert all disorder columns to numeric types using a coercion step so non-numeric strings become missing values.
+
+Keep only rows where all selected disorder columns contain values that look like valid percentages (for example, less than or equal to 100).
+
+Rename the disorder columns to shorter, consistent names such as schizophrenia_pct, bipolar_pct, eating_disorders_pct, anxiety_pct, drug_use_pct, depression_pct, and alcohol_use_pct.
+
+Convert Year into an integer year column.
+
+Drop rows with missing country or year, since these fields are part of the key we use later when merging with the happiness data.
+
+The result is a country–year panel where each row contains prevalence information for multiple disorders for a given country and year. This table is small enough to keep in CSV form and cleanly join with the World Happiness data using a shared country key and year.
+
+**World Happiness Report 2015–2019**
+
+The second dataset is the World Happiness Report data for years 2015 through 2019. Each year is distributed as a separate CSV file, and the column names and ordering change slightly from one year to the next. We load each file, trim whitespace from the column names, infer the year from the filename, and then map the columns into a common schema.
+
+The cleaned happiness table includes the following variables:
+
+country – country name
+
+year – calendar year (2015–2019)
+
+happiness_score – overall life evaluation score used in the report
+
+gdp_per_capita – GDP per capita (log scale in the original report)
+
+social_support – measure of perceived social support
+
+healthy_life_expectancy – healthy life expectancy at birth
+
+freedom – measure of perceived freedom to make life choices
+
+generosity – measure related to charitable giving
+
+perceptions_of_corruption – perceptions of corruption in government and business
+
+Because different yearly files use labels such as “Happiness Score,” “Happiness.Score,” “Score,” or “Ladder” for similar concepts, we use a small mapping based on lower-cased column names and keywords to standardize them. A similar mapping handles variations in the GDP, social support, and corruption columns. After mapping, we keep only the target columns, drop rows with missing country or year, and cast year to an integer.
+
+Finally, we vertically concatenate the yearly tables into a single happiness table that covers 2015–2019. This unified table allows us to analyze trends over time and makes the merge with the mental health table straightforward.
+
+**Ethical and legal considerations**
+
+Both datasets are aggregate, country-level sources with no individual-level identifiers or microdata. This greatly reduces privacy risks because no single person can be re-identified from our tables. Our World in Data generally publishes material under permissive Creative Commons–style licenses, and the World Happiness Report data are explicitly provided for research and educational use. In this project we use the data only for coursework, credit the original providers in the references, and do not attempt to link them with any sensitive individual-level datasets.
+
+We store a subset of cleaned CSV files and output tables in a Box folder to support reproducibility without pushing large data files directly to GitHub. The README explains exactly where to place these files inside the project structure after downloading them (for example, data/ for input CSVs and images/ for output figures). The Box folder is shared with view access for course staff only. This design respects the terms of use of the original data, keeps the GitHub repository lightweight, and still makes our curated version reproducible for grading and for any future extensions of the project.
 
 
 
@@ -75,7 +120,7 @@ The mid-2010s data on mental health and happiness represents a valuable foundati
 
 **Reproducing:**
 
-**1:** Clone the repository
+**1: Clone the repository**
 
 
 Open a terminal and run:
@@ -83,7 +128,7 @@ Open a terminal and run:
 cd IS477FinalProject
 
 
-**2:** Check the project structure
+**2: Check the project structure**
 
 
 The repo should contain these folders in the root:
@@ -98,7 +143,7 @@ images – output PNG visualizations
 notebooks – Jupyter notebook and markdown reports
 
 
-**3:** Download data from Box
+**3: Download data from Box**
 
 
 Go to our shared Box folder: https://uofi.box.com/s/2mu56tzmc8tj76aqjhsafvis7x3cwnpp
@@ -119,20 +164,20 @@ All PNG image files → images/
 Note: the data/ folder is in .gitignore, so these files are not stored in GitHub and must be downloaded from Box.
 
 
-**4:** Create and activate a Python environment
+**4: Create and activate a Python environment**
 
 
 Create a new environment using conda or python -m venv and activate it.
 
 
-**5:** Install dependencies
+**5: Install dependencies**
 
 
 From the root of the repository, run:
  pip install -r requirements.txt
 
 
-**6:** Run the analysis notebook
+**6: Run the analysis notebook**
 
 
 Start Jupyter Lab or VS Code.
@@ -147,7 +192,7 @@ Run all cells from top to bottom.
 This notebook loads and cleans the mental health and happiness data, integrates them, and generates the analysis and plots used in our report.
 
 
-**7:** Verify the outputs
+**7: Verify the outputs**
 
 
 After running the notebook you should see:
@@ -160,4 +205,34 @@ Scatter plots of mental health vs. happiness.
 
 
 Year-specific happiness visualizations saved into the images/ folder.
+
+
+**References**
+
+**Data sources**
+
+Ritchie, H., Ortiz-Ospina, E., and Roser, M. “Mental Health.” Our World in Data. Accessed December 2025. https://ourworldindata.org/mental-health Our World in Data
+
+
+Helliwell, J. F., Layard, R., Sachs, J., and De Neve, J. E. World Happiness Report 2015–2019. Sustainable Development Solutions Network. Original reports available at https://worldhappiness.report. Data accessed via Kaggle dataset “World Happiness” (unsdsn/world-happiness): https://www.kaggle.com/datasets/unsdsn/world-happiness Observable
+
+
+**Software and tools**
+
+Python Software Foundation. Python Language Reference, Version 3.11. https://www.python.org
+
+
+The pandas development team. pandas: Python Data Analysis Library. https://pandas.pydata.org
+
+
+Harris, C. R., Millman, K. J., van der Walt, S. J., et al. “Array programming with NumPy.” Nature 585, 357–362 (2020). https://numpy.org
+
+
+Hunter, J. D. “Matplotlib: A 2D graphics environment.” Computing in Science & Engineering 9(3), 90–95 (2007). https://matplotlib.org
+
+
+Plotly Technologies Inc. Plotly Python Graphing Library. https://plotly.com/python
+
+
+Kluyver, T., Ragan-Kelley, B., Pérez, F., et al. “Jupyter Notebooks – a publishing format for reproducible computational workflows.” In Positioning and Power in Academic Publishing (2016). https://jupyter.org
 
