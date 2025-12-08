@@ -1,4 +1,8 @@
 
+***Mental Health and Happiness: Integrating Country-Level Indicators from Our World in Data and the World Happiness Report***
+
+
+
 **Summary:**
 
 This project explores how national mental health outcomes relate to country level happiness scores. People often assume that happier countries must have better mental health, but it is not obvious how strong that relationship is or whether it is consistent across different disorders. Our main goal is to take two widely used public datasets, clean and integrate them into a single reusable table, and then use that table to examine simple but meaningful patterns between mental health prevalence and happiness. By focusing on a small number of clear questions and documenting each data curation step, we aim to create a project that is not only interesting but also easy for others to reproduce, extend, or critique.
