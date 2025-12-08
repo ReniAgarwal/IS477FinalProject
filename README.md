@@ -1,5 +1,6 @@
 
-**Summary**
+**Summary:**
+
 This project explores how national mental health outcomes relate to country level happiness scores. People often assume that happier countries must have better mental health, but it is not obvious how strong that relationship is or whether it is consistent across different disorders. Our main goal is to integrate two widely used public datasets into a single, reusable table and use it to examine basic patterns between mental health prevalence and happiness.
 We focus on three questions. First, how are country level prevalence rates of common mental and substance use disorders associated with national happiness scores from the World Happiness Report. Second, do these associations look similar for different disorders such as depression, anxiety, alcohol use, and schizophrenia. Third, how stable are these relationships across the years where both sources provide overlapping data.
 To answer these questions we combined an Our World in Data mental health prevalence table with the World Happiness Report data from 2015 to 2019. The mental health dataset reports the percentage of the population with several disorders by country and year. The happiness dataset provides country level happiness scores and related factors such as GDP per capita, social support, healthy life expectancy, freedom, generosity, and perceptions of corruption. We cleaned both sources, standardized country names, and merged them on a shared cleaned country key and year.
