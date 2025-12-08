@@ -1,7 +1,6 @@
 
-***Mental Health and Happiness: Integrating Country-Level Indicators from Our World in Data and the World Happiness Report***
-
-**Made by: Dhruval Patel and Reni Agarwal**
+## Mental Health and Happiness: Integrating Country-Level Indicators from Our World in Data and the World Happiness Report
+## Made by: Dhruval Patel and Reni Agarwal
 
 
 
