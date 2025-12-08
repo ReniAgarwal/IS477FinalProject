@@ -8,6 +8,35 @@ After integration we generated descriptive statistics and visualizations. These 
 In general we see a weak negative relationship between reported depression or anxiety prevalence and happiness scores: countries with higher reported prevalence tend to have somewhat lower happiness scores, but there is a lot of variation and many exceptions. Some countries with high happiness scores still show notable prevalence of certain disorders, while some lower ranked countries show moderate or low reported prevalence.
 Our results suggest that simple public data can be combined to support cross national exploration of mental health and happiness, but they also highlight the limits of this approach. Differences in diagnosis, reporting practices, and health systems likely influence the observed prevalence as much as the true burden of illness. The integrated dataset and workflow in this repository provide a starting point for students or researchers who want to build more advanced models or extend the analysis with additional sources, while also serving as a concrete example of a small but reproducible data curation project.
 
+**Data profile:**
+
+Mental health prevalence (Our World in Data)
+The first dataset comes from Our World in Data and reports prevalence estimates for several mental and substance use disorders by country and year. The original CSV includes many variables, but we focus on a subset that can be interpreted as percentages of the population. Key columns are:
+• Entity, Code, Year – country name, country code when available, and calendar year
+ • Schizophrenia (%)
+ • Bipolar disorder (%)
+ • Eating disorders (%)
+ • Anxiety disorders (%)
+ • Drug use disorders (%)
+ • Depression (%)
+ • Alcohol use disorders (%)
+In our cleaned table, which we call mental, we keep rows where all of the selected disorder columns can be interpreted as valid percentages. We convert the disorder columns to numeric types, rename them to shorter consistent names such as schizophrenia_pct, depression_pct, and alcohol_use_pct, and convert Year into an integer year column. Rows with missing country or year are dropped, since those fields are part of the key we use to merge with the happiness data. The result is a country year panel where each row contains prevalence information for multiple disorders and can be joined cleanly with the World Happiness data.
+World Happiness Report 2015–2019
+The second dataset is the World Happiness Report data for years 2015 through 2019. Each year is stored in a separate CSV file and the column names change slightly from one year to the next. We read each file, trim whitespace from column names, infer the year from the filename, and map columns into a common schema. The cleaned happiness table contains:
+• country
+ • year
+ • happiness_score
+ • gdp_per_capita
+ • social_support
+ • healthy_life_expectancy
+ • freedom
+ • generosity
+ • perceptions_of_corruption
+Because column names such as “Happiness Score,” “Happiness.Score,” or just “Score” all refer to the same concept, we use a small mapping based on lowercased column names and keywords to assign them to the standard fields. After mapping, we keep only the target columns, drop rows with missing country or year, and cast year to an integer. The yearly tables are concatenated into a single happiness table that covers 2015 through 2019.
+Ethical and legal considerations
+Both datasets are aggregate country level sources with no individual level identifiers. This greatly reduces privacy risks. Our World in Data generally publishes material under Creative Commons style licenses, and the World Happiness Report data are explicitly intended for research and education. In this project we use the data only for coursework, give credit to the original providers in the references, and do not attempt to link them with any sensitive individual records.
+We store a subset of the cleaned CSV files and output tables in a Box folder to support reproducibility without pushing large data files directly to GitHub. The README explains where to place these files inside the project structure after downloading them. The Box folder is shared with view access for the course staff only. Our design respects the terms of use of the data while still making the curated version reproducible for grading and future work.
+
 
 
 
