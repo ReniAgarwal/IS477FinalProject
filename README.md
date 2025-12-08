@@ -4,7 +4,7 @@
 
 
 
-**Summary:**
+### Summary:
 
 This project explores how national mental health outcomes relate to country level happiness scores. People often assume that happier countries must have better mental health, but it is not obvious how strong that relationship is or whether it is consistent across different disorders. Our main goal is to take two widely used public datasets, clean and integrate them into a single reusable table, and then use that table to examine simple but meaningful patterns between mental health prevalence and happiness. By focusing on a small number of clear questions and documenting each data curation step, we aim to create a project that is not only interesting but also easy for others to reproduce, extend, or critique.
 
@@ -18,7 +18,7 @@ In general we see a weak negative relationship between reported depression or an
 
 Overall, our results show that simple public data can be combined to support cross national exploration of mental health and happiness, but they also highlight the limits of this approach. Differences in diagnosis standards, reporting practices, and health system capacity likely influence observed prevalence as much as the true burden of illness. Despite these limitations, the integrated dataset and documented workflow in this repository provide a starting point for students or researchers who want to build more advanced models, add new years or variables, or focus on specific regions. At the same time, the project serves as a concrete example of a small but fully reproducible data curation and analysis pipeline.
 
-**Data profile:**
+### Data profile:
 
 **Mental health prevalence**
 
@@ -90,7 +90,7 @@ We store a subset of cleaned CSV files and output tables in a Box folder to supp
 
 
 
-**Data Quality:**
+### Data Quality:
 
 This data quality assessment examines one longitudinal mental-health dataset and a collection of World Happiness Index datasets spanning the years 2015 through 2019. Together these datasets offer a rich opportunity for cross-national and cross-temporal analysis of wellbeing, but they differ significantly in structure, consistency, and completeness, which requires careful evaluation before meaningful analytical work can be done.
 The mental-health dataset is organized as a clean, long-format panel containing one observation per country per year. Each row includes a country name, a three-letter ISO code, a year, and several prevalence measures, such as depression, anxiety disorders, eating disorders, drug use disorders, and alcohol use disorders. These values appear in plausible epidemiological ranges, and the presence of an ISO code is particularly beneficial for cross-dataset merging, since it provides a standardized identifier that remains stable across years. In contrast, the World Happiness Index files are structured as annual cross-sections. Each file contains one row per country for a specific year and includes a variety of economic and social indicators used to compute a happiness score. The files are generally tidy on their own, but they are not entirely consistent across years: variable names differ slightly, some additional fields appear or disappear from year to year, and column counts vary. As a result, creating a unified dataset for trend analysis requires harmonizing these structural differences.
@@ -101,7 +101,7 @@ Assessing accuracy without external verification is difficult, but internal plau
 Several steps will be necessary to prepare these datasets for integrated analysis. Mixed-type and non-numeric fields must be cleaned and converted to uniform numeric formats. Country names in the happiness files should be standardized and mapped to ISO codes so that they match the identifiers in the mental-health dataset. Columns with similar meanings across years should be renamed to a consistent schema to avoid fragmentation of variables. Missing entries should be documented and handled transparently, either through imputation or by filtering out incomplete cases depending on the planned analysis. Finally, because the happiness files contain one row per country per year while the mental-health dataset spans many years, all datasets should be aligned on a consistent year field before merging into a single panel.
 Overall, the datasets possess high analytical value and, after careful cleaning, will support robust examinations of how national wellbeing indicators relate to trends in mental-health prevalence. Their primary limitations involve cross-year inconsistencies, data-type irregularities in certain files, and the need for harmonized country identifiers. Addressing these issues through thoughtful preprocessing will allow both the happiness and mental-health data to be combined into a coherent, longitudinal dataset suited for statistical modeling, visualization, and policy analysis.
 
-**Findings:**
+### Findings:
 
 The relationship between national happiness and mental health disorders reveals complex patterns across global populations, suggesting that the connection between collective wellbeing and individual psychological challenges is multifaceted and varies considerably by condition type. The 2017 scatter plot examining mental health versus country happiness scores presents a striking observation: there appears to be a negative correlation between reported happiness levels and certain mental health conditions, particularly drug use disorders.
 Countries with the highest happiness scores, typically ranging from 7.0 to 7.5, consistently show the lowest percentages of people suffering from drug use issues, typically below 1%. This cluster of high-happiness, low-drug-use countries likely includes Nordic nations and other developed economies that consistently rank at the top of global happiness indices. Conversely, countries with happiness scores in the 3.0-5.0 range show dramatically higher rates of drug use disorders, sometimes exceeding 7% of the population. This suggests that societal factors contributing to lower happiness, such as economic instability, weak social support systems, conflict, or poor governance, may also create conditions conducive to substance abuse.
@@ -110,7 +110,7 @@ Anxiety disorders, represented in blue, demonstrate an even more scattered distr
 The world maps from 2015 and 2016 reveal consistent geographic patterns in happiness distribution. North America, Scandinavia, Australia, and parts of South America consistently show the highest happiness scores, represented in yellow-green tones indicating values of 6.5-7.5, while much of Africa and parts of Asia display lower scores in dark blue, ranging from 3.0 to 4.5. Western Europe maintains moderate to high happiness levels, while Eastern Europe and Russia show more moderate scores. The remarkable consistency between 2015 and 2016 suggests that national happiness levels are relatively stable over short time periods, likely reflecting deeply rooted structural factors like economic development, political stability, social safety nets, and cultural values. The few visible changes between years appear minimal, indicating that major shifts in national wellbeing require sustained efforts over extended periods.
 These findings suggest that while national happiness correlates strongly with certain mental health outcomes, particularly substance use disorders, it is not a universal predictor of all psychological challenges. The strong inverse relationship with drug use disorders may reflect the protective effects of strong communities, economic opportunity, and effective healthcare systems found in happier nations. However, the more scattered patterns for depression and anxiety indicate these conditions have complex etiologies involving biological, psychological, and social factors that transcend national happiness levels. This complexity underscores the importance of addressing mental health through multifaceted approaches that consider both societal wellbeing and individual-level interventions, recognizing that improving national happiness alone may not sufficiently address the full spectrum of mental health challenges facing populations worldwide.
 
-**Future Work:**
+## Future Work:
 
 The analysis of mental health data and happiness trends across countries in the mid-2010s has revealed some intriguing patterns that warrant further investigation. While the current study has established a somewhat positive relationship between national happiness scores and various mental health disorders, numerous questions remain unanswered, and several promising avenues for future research have emerged that could deepen our understanding of the complex interplay between societal wellbeing and individual psychological health.
 One critical direction for future work involves longitudinal analysis that extends beyond the snapshot approach of examining single years. While the 2015, 2016, and 2017 happiness maps showed remarkable stability, a comprehensive study tracking mental health indicators and happiness scores across the entire decade of the 2010s could reveal important temporal dynamics. Such research could identify whether countries experiencing rapid economic development or political transitions show corresponding shifts in mental health prevalence rates. Additionally, examining whether happiness improvements precede mental health improvements, or vice versa, could help establish causal relationships rather than mere correlations. This temporal dimension is particularly important for understanding whether interventions aimed at improving national happiness actually translate into measurable mental health benefits over time.
@@ -123,7 +123,7 @@ Climate change and environmental factors present an increasingly relevant area f
 Finally, future work should explore the potential for developing more sophisticated composite measures that integrate happiness scores with mental health indicators to create holistic wellbeing indices. Such indices could better capture the full spectrum of population psychological health and provide more nuanced country rankings than happiness scores alone. These integrated measures could guide international development priorities and help track progress toward sustainable development goals related to health and wellbeing.
 The mid-2010s data on mental health and happiness represents a valuable foundation, but realizing its full potential requires expanded research efforts that examine temporal trends, within-country variations, causal mechanisms, data quality, policy effectiveness, cultural contexts, environmental factors, and integrated measurement approaches. Such comprehensive future research could transform our understanding of population mental health and inform evidence-based strategies for improving psychological wellbeing across diverse national contexts.
 
-**Reproducing:**
+## Reproducing:
 
 **1: Clone the repository**
 
@@ -212,7 +212,7 @@ Scatter plots of mental health vs. happiness.
 Year-specific happiness visualizations saved into the images/ folder.
 
 
-**References**
+## References
 
 **Data sources**
 
