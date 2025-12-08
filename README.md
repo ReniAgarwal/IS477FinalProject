@@ -75,7 +75,7 @@ The mid-2010s data on mental health and happiness represents a valuable foundati
 
 **Reproducing:**
 
-Clone the repository
+**1:** Clone the repository
 
 
 Open a terminal and run:
@@ -83,7 +83,7 @@ Open a terminal and run:
 cd IS477FinalProject
 
 
-Check the project structure
+**2:** Check the project structure
 
 
 The repo should contain these folders in the root:
@@ -98,7 +98,7 @@ images – output PNG visualizations
 notebooks – Jupyter notebook and markdown reports
 
 
-Download data from Box
+**3:** Download data from Box
 
 
 Go to our shared Box folder: https://uofi.box.com/s/2mu56tzmc8tj76aqjhsafvis7x3cwnpp
@@ -119,20 +119,20 @@ All PNG image files → images/
 Note: the data/ folder is in .gitignore, so these files are not stored in GitHub and must be downloaded from Box.
 
 
-Create and activate a Python environment
+**4:** Create and activate a Python environment
 
 
 Create a new environment using conda or python -m venv and activate it.
 
 
-Install dependencies
+**5:** Install dependencies
 
 
 From the root of the repository, run:
  pip install -r requirements.txt
 
 
-Run the analysis notebook
+**6:** Run the analysis notebook
 
 
 Start Jupyter Lab or VS Code.
@@ -147,7 +147,7 @@ Run all cells from top to bottom.
 This notebook loads and cleans the mental health and happiness data, integrates them, and generates the analysis and plots used in our report.
 
 
-Verify the outputs
+**7:** Verify the outputs
 
 
 After running the notebook you should see:
