@@ -72,3 +72,92 @@ Cultural factors represent another underexplored dimension in the relationship b
 Climate change and environmental factors present an increasingly relevant area for future investigation. As environmental stressors intensify, research should examine whether countries facing severe climate impacts show changing patterns in mental health disorders, and whether national happiness scores adequately capture the psychological burden of environmental degradation. The mental health implications of climate-related displacement, natural disasters, and resource scarcity deserve systematic study across affected nations.
 Finally, future work should explore the potential for developing more sophisticated composite measures that integrate happiness scores with mental health indicators to create holistic wellbeing indices. Such indices could better capture the full spectrum of population psychological health and provide more nuanced country rankings than happiness scores alone. These integrated measures could guide international development priorities and help track progress toward sustainable development goals related to health and wellbeing.
 The mid-2010s data on mental health and happiness represents a valuable foundation, but realizing its full potential requires expanded research efforts that examine temporal trends, within-country variations, causal mechanisms, data quality, policy effectiveness, cultural contexts, environmental factors, and integrated measurement approaches. Such comprehensive future research could transform our understanding of population mental health and inform evidence-based strategies for improving psychological wellbeing across diverse national contexts.
+
+**Reproducing:**
+
+Clone the repository
+
+
+Open a terminal and run:
+ git clone https://github.com/ReniAgarwal/IS477FinalProject.git
+cd IS477FinalProject
+
+
+Check the project structure
+
+
+The repo should contain these folders in the root:
+
+
+data – input CSV files
+
+
+images – output PNG visualizations
+
+
+notebooks – Jupyter notebook and markdown reports
+
+
+Download data from Box
+
+
+Go to our shared Box folder: https://uofi.box.com/s/2mu56tzmc8tj76aqjhsafvis7x3cwnpp
+
+
+Download the contents.
+
+
+Place the files in the repo as follows:
+
+
+All CSV files → data/
+
+
+All PNG image files → images/
+
+
+Note: the data/ folder is in .gitignore, so these files are not stored in GitHub and must be downloaded from Box.
+
+
+Create and activate a Python environment
+
+
+Create a new environment using conda or python -m venv and activate it.
+
+
+Install dependencies
+
+
+From the root of the repository, run:
+ pip install -r requirements.txt
+
+
+Run the analysis notebook
+
+
+Start Jupyter Lab or VS Code.
+
+
+Open notebooks/Project-Check.ipynb.
+
+
+Run all cells from top to bottom.
+
+
+This notebook loads and cleans the mental health and happiness data, integrates them, and generates the analysis and plots used in our report.
+
+
+Verify the outputs
+
+
+After running the notebook you should see:
+
+
+A merged table linking mental health prevalence and happiness scores by country and year.
+
+
+Scatter plots of mental health vs. happiness.
+
+
+Year-specific happiness visualizations saved into the images/ folder.
+
